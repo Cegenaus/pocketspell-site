@@ -1,0 +1,4 @@
+# app-ads.txt for pocketspellstudios.com
+# When your AdMob account is ready, replace the line below with the one AdMob gives you
+# (Apps > View all apps > app-ads.txt > How to set up), then remove the leading '# '.
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
