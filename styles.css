@@ -10,6 +10,7 @@
   --sky-ember: #f7bd63;
   --sky-ember-hi: #ffd391;
   --on-ember: #1b1530;
+  --moon: 248, 240, 224;
 
   /* page palette, dark (the default look) */
   --night: #11152b;
@@ -129,7 +130,7 @@ p { margin: 0; }
   font-size: 1.3rem;
   line-height: 1;
 }
-.brand .mark { width: 34px; height: 34px; flex: none; }
+.brand .mark { width: 40px; height: 40px; flex: none; object-fit: contain; }
 .mark .body { fill: none; stroke: var(--sky-ink); }
 .mark .solid { fill: var(--sky-ink); }
 .mark .flame { fill: var(--sky-ember); filter: drop-shadow(0 0 5px rgba(255, 170, 80, 0.95)); }
@@ -163,7 +164,7 @@ p { margin: 0; }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 32px;
   align-items: center;
   padding-block: 40px 40px;
@@ -171,14 +172,15 @@ p { margin: 0; }
 .hero-text { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
 .hero h1 { font-size: var(--step-4); }
 .lede { font-size: var(--step-1); line-height: 1.5; color: var(--sky-muted); max-width: 36ch; }
-.hero-lantern { justify-self: center; width: min(240px, 100%); }
-.hero-lantern .mark { width: 100%; height: auto; }
-.hero-lantern .flame { animation: flicker 3.2s ease-in-out infinite; transform-origin: 24px 33px; }
-@keyframes flicker {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  40% { transform: scale(0.94, 1.05); opacity: 0.92; }
-  70% { transform: scale(1.04, 0.97); opacity: 1; }
+.hero-logo { justify-self: center; width: min(380px, 100%); position: relative; isolation: isolate; }
+.hero-logo::before {
+  content: "";
+  position: absolute;
+  inset: -16% -20%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(var(--moon), 0.97) 0%, rgba(var(--moon), 0.9) 52%, rgba(var(--moon), 0) 100%);
 }
+.hero-logo img { display: block; width: 100%; height: auto; }
 .page-head { display: flex; flex-direction: column; gap: 12px; padding-block: 24px 28px; }
 .page-head h1 { font-size: var(--step-3); }
 .page-head .lede { font-size: 1.15rem; }
@@ -365,7 +367,7 @@ th { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spac
 .download { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); }
 .download:hover { border-color: var(--ember); color: var(--ink); }
 .download .swatch { width: 52px; height: 52px; border-radius: 12px; background: var(--sky-top); display: grid; place-items: center; }
-.download .swatch svg { width: 38px; height: 38px; }
+.download .swatch img { width: 44px; height: 44px; object-fit: contain; }
 .download small { display: block; color: var(--muted); font-family: var(--mono); font-size: 0.72rem; }
 
 .promises { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
@@ -391,7 +393,7 @@ th { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spac
 /* ---------- Narrow screens ---------- */
 @media (max-width: 760px) {
   .hero { grid-template-columns: minmax(0, 1fr); padding-block: 20px 28px; }
-  .hero-lantern { display: none; }
+  .hero-logo { order: -1; width: min(250px, 72%); margin-block: 8px 4px; }
   .feature { grid-template-columns: minmax(0, 1fr); }
   .later { grid-template-columns: minmax(0, 1fr); }
   .later .play { max-width: 220px; }
@@ -405,5 +407,4 @@ th { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spac
   .nav { padding-block: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-lantern .flame { animation: none; }
 }
